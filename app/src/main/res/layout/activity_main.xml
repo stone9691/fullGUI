@@ -18,11 +18,12 @@
 
     <me.majiajie.pagerbottomtabstrip.PageNavigationView
         android:id="@+id/main_activity_bottom_tab"
-        android:elevation="8dp"
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:layout_alignParentBottom="true"
         android:background="#FFF"
-        />
+        android:elevation="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="0dp" />
 
 </android.support.constraint.ConstraintLayout>
