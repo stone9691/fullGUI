@@ -1,7 +1,9 @@
-package com.example.stone.uidemo;
+package com.example.stone.uidemo.view;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import com.example.stone.uidemo.R;
 
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageNavigationView;
@@ -14,7 +16,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        PageNavigationView tab = (PageNavigationView) findViewById(R.id.main_activity_bottom_tab);
+        PageNavigationView tab = (PageNavigationView) findViewById(R.id.activity_main_bottom_tab);
 
         NavigationController navigationController = tab.material()
                 .addItem(android.R.drawable.ic_menu_camera, "Texts")
