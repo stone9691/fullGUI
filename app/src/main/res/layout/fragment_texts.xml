@@ -7,61 +7,113 @@
     tools:layout_editor_absoluteY="81dp">
 
     <ImageView
-        android:id="@+id/imageView3"
+        android:id="@+id/fragment_texts_image_texts"
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginEnd="48dp"
+        android:layout_marginRight="48dp"
         android:src="@android:drawable/ic_menu_camera"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toTopOf="@+id/imageView2" />
+        app:layout_constraintEnd_toStartOf="@+id/fragment_texts_image_books"
+        app:layout_constraintTop_toTopOf="@+id/fragment_texts_image_books" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/fragment_texts_text_texts"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Texts"
-        app:layout_constraintEnd_toEndOf="@+id/imageView3"
-        app:layout_constraintStart_toStartOf="@+id/imageView3"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3" />
+        app:layout_constraintEnd_toEndOf="@+id/fragment_texts_image_texts"
+        app:layout_constraintStart_toStartOf="@+id/fragment_texts_image_texts"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_texts_image_texts" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/fragment_texts_image_books"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
         android:src="@android:drawable/ic_menu_compass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView" />
+        app:layout_constraintTop_toTopOf="@+id/fragment_texts_image_notebooks" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/fragment_texts_text_books"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="Books"
-        app:layout_constraintEnd_toEndOf="@+id/imageView2"
-        app:layout_constraintStart_toStartOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintEnd_toEndOf="@+id/fragment_texts_image_books"
+        app:layout_constraintStart_toStartOf="@+id/fragment_texts_image_books"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_texts_image_books" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/fragment_texts_image_notebooks"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:layout_marginLeft="48dp"
         android:layout_marginStart="48dp"
         android:src="@android:drawable/ic_menu_call"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
+        app:layout_constraintStart_toEndOf="@+id/fragment_texts_image_books"
         tools:layout_editor_absoluteY="0dp" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/fragment_texts_text_notebooks"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
         android:text="Notebooks"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="@+id/fragment_texts_image_notebooks"
+        app:layout_constraintStart_toStartOf="@+id/fragment_texts_image_notebooks"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_texts_image_notebooks" />
+
+    <LinearLayout
+        android:id="@+id/fragment_texts_linearlayout_device_cloud"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/Lavender"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_texts_text_books">
+
+        <ImageView
+            android:id="@+id/imageView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_add" />
+
+        <Button
+            android:id="@+id/device"
+            android:layout_width="100dp"
+            android:layout_height="28dp"
+            android:background="@color/LightGrey"
+            android:text="Device"
+            android:textColor="@color/colorPrimary" />
+
+        <Button
+            android:id="@+id/cloud"
+            android:layout_width="100dp"
+            android:layout_height="28dp"
+            android:background="@color/colorPrimary"
+            android:text="Cloud"
+            android:textColor="@color/White" />
+
+
+        <ImageView
+            android:id="@+id/imageView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_input_add" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/fragment_texts_list_texts"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:divider="@color/Lavender"
+        android:dividerHeight="1dp"
+        android:listSelector="@null"
+        android:scrollingCache="false"
+        app:layout_constraintTop_toBottomOf="@+id/fragment_texts_linearlayout_device_cloud" />
 
 </android.support.constraint.ConstraintLayout>
