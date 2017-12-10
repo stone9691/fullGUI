@@ -1,10 +1,13 @@
 package com.example.stone.uidemo.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
+import android.widget.Toast;
 
 import com.example.stone.uidemo.R;
 import com.example.stone.uidemo.view.decks.DecksFragment;
@@ -32,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
     private MoreFragment mMoreFragment = MoreFragment.newInstance();
 
     private Fragment mCurrentFragment = null;
+
+    private long firstTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,5 +118,24 @@ public class MainActivity extends AppCompatActivity {
 
         mCurrentFragment = toFragment;
         ft.commit();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            long secondTime = System.currentTimeMillis();
+            if (secondTime - firstTime > 2000) {
+                Toast.makeText(this, getString(R.string.double_back_to_exit), Toast.LENGTH_SHORT).show();
+                firstTime = secondTime;
+                return true;
+            } else {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        }
+
+        return super.onKeyDown(keyCode, event);
     }
 }
