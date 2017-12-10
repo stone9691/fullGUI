@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -45,7 +46,11 @@ public class TextsFragment extends Fragment {
 
         mTextList = new ArrayList<Text>();
         for (int i = 1; i <= 50; i++) {
-            mTextList.add(new Text("让子弹飞(" + i + ")", "Movies", "12/5/17"));
+            if (i % 3 == 0) {
+                mTextList.add(new Text("让子弹飞(" + i + ")", "Movies", "12/5/17", true));
+            } else {
+                mTextList.add(new Text("让子弹飞(" + i + ")", "Movies", "12/5/17", false));
+            }
         }
 
         mListView = (ListView) view.findViewById(R.id.fragment_texts_list_texts);
@@ -86,6 +91,7 @@ public class TextsFragment extends Fragment {
             Text text = objects.get(position);
 
             TextView tv;
+            ImageView image;
             if (text != null) {
                 tv = (TextView) v.findViewById(R.id.fragment_texts_list_title);
                 if (tv != null) {
@@ -101,7 +107,18 @@ public class TextsFragment extends Fragment {
                 if (tv != null) {
                     tv.setText(text.getDate());
                 }
+
+                image = (ImageView) v.findViewById(R.id.fragment_texts_list_download);
+                if (image != null) {
+                    if (text.getIsCloud()) {
+                        image.setImageResource(R.drawable.ic_download);
+                    } else {
+                        image.setImageResource(R.drawable.ic_download_finish);
+                    }
+                }
             }
+
+
             return v;
         }
     }
