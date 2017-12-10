@@ -40,14 +40,14 @@
             android:text="12/5/17"/>
 
         <ImageView
-            android:layout_width="16dp"
-            android:layout_height="16dp"
-            android:src="@android:drawable/stat_notify_error"/>
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_download_finish"/>
     </LinearLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@android:drawable/ic_lock_silent_mode"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:src="@drawable/ic_right_arrow"
         android:layout_weight="0.1"/>
 </LinearLayout>

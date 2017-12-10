@@ -61,11 +61,11 @@ public class MainActivity extends AppCompatActivity {
 
         PageNavigationView tab = (PageNavigationView) findViewById(R.id.activity_main_bottom_tab);
         NavigationController navigationController = tab.material()
-                .addItem(android.R.drawable.ic_menu_camera, "Texts")
-                .addItem(android.R.drawable.ic_menu_compass, "Decks")
-                .addItem(android.R.drawable.ic_menu_search, "Dictionary")
-                .addItem(android.R.drawable.ic_menu_help, "Store")
-                .addItem(android.R.drawable.ic_menu_more, "More")
+                .addItem(R.drawable.ic_bottom_tab_text, "Texts")
+                .addItem(R.drawable.ic_bottom_tab_decks, "Decks")
+                .addItem(R.drawable.ic_bottom_tab_dictionary, "Dictionary")
+                .addItem(R.drawable.ic_bottom_tab_store, "Store")
+                .addItem(R.drawable.ic_bottom_tab_more, "More")
                 .build();
 
         navigationController.addTabItemSelectedListener(new OnTabItemSelectedListener() {
