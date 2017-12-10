@@ -1,12 +1,18 @@
 package com.example.stone.uidemo.view;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Html;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Toast;
 
 import com.example.stone.uidemo.R;
@@ -44,10 +50,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         ActionBar actionBar = getSupportActionBar();
-        actionBar.hide();
+        if (actionBar != null) {
+            actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.Silver)));
+
+            LayoutInflater mInflater = LayoutInflater.from(this);
+            View mCustomView = mInflater.inflate(R.layout.action_bar, null);
+            actionBar.setCustomView(mCustomView);
+            actionBar.setDisplayShowCustomEnabled(true);
+        }
 
         PageNavigationView tab = (PageNavigationView) findViewById(R.id.activity_main_bottom_tab);
-
         NavigationController navigationController = tab.material()
                 .addItem(android.R.drawable.ic_menu_camera, "Texts")
                 .addItem(android.R.drawable.ic_menu_compass, "Decks")
