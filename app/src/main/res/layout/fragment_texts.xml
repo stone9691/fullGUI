@@ -70,7 +70,7 @@
         android:id="@+id/fragment_texts_linearlayout_device_cloud"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/Lavender"
+        android:background="@color/WhiteSmoke"
         android:gravity="center|center_horizontal|center_vertical"
         android:orientation="horizontal"
         app:layout_constraintTop_toBottomOf="@+id/fragment_texts_text_books">
@@ -110,7 +110,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:divider="@color/Lavender"
+        android:divider="@color/WhiteSmoke"
         android:dividerHeight="1dp"
         android:listSelector="@null"
         android:scrollingCache="false"
