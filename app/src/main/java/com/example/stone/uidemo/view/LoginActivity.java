@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.stone.uidemo.R;
 
@@ -50,6 +49,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.activity_login_text_forget:
                 break;
             case R.id.activity_login_text_create:
+                intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+                startActivity(intent);
+                this.finish();
                 break;
             default:
                 break;
