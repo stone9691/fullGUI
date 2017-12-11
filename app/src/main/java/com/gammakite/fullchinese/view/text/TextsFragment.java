@@ -1,4 +1,4 @@
-package com.example.stone.uidemo.view.text;
+package com.gammakite.fullchinese.view.text;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -12,8 +12,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.stone.uidemo.R;
-import com.example.stone.uidemo.object.Text;
+import com.gammakite.fullchinese.R;
+import com.gammakite.fullchinese.object.Text;
 
 import java.util.ArrayList;
 import java.util.List;

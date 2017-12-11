@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.stone.uidemo.view.store.StoreFragment">
+    tools:context="com.gammakite.fullchinese.uidemo.view.store.StoreFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

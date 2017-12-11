@@ -1,4 +1,4 @@
-package com.example.stone.uidemo;
+package com.gammakite.fullchinese.uidemo;
 
 import org.junit.Test;
 

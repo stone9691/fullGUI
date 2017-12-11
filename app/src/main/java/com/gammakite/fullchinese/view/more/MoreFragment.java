@@ -1,4 +1,4 @@
-package com.example.stone.uidemo.view.decks;
+package com.gammakite.fullchinese.view.more;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -6,16 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.stone.uidemo.R;
+import com.gammakite.fullchinese.R;
 
-public class DecksFragment extends Fragment {
+public class MoreFragment extends Fragment {
 
-    public DecksFragment() {
+    public MoreFragment() {
         // Required empty public constructor
     }
 
-    public static DecksFragment newInstance() {
-        DecksFragment fragment = new DecksFragment();
+    public static MoreFragment newInstance() {
+        MoreFragment fragment = new MoreFragment();
         return fragment;
     }
 
@@ -28,6 +28,6 @@ public class DecksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_decks, container, false);
+        return inflater.inflate(R.layout.fragment_more, container, false);
     }
 }

@@ -1,6 +1,5 @@
-package com.example.stone.uidemo.view;
+package com.gammakite.fullchinese.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -9,18 +8,17 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Html;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.stone.uidemo.R;
-import com.example.stone.uidemo.view.decks.DecksFragment;
-import com.example.stone.uidemo.view.dictionary.DictionaryFragment;
-import com.example.stone.uidemo.view.more.MoreFragment;
-import com.example.stone.uidemo.view.store.StoreFragment;
-import com.example.stone.uidemo.view.text.TextsFragment;
+import com.gammakite.fullchinese.R;
+import com.gammakite.fullchinese.view.decks.DecksFragment;
+import com.gammakite.fullchinese.view.dictionary.DictionaryFragment;
+import com.gammakite.fullchinese.view.more.MoreFragment;
+import com.gammakite.fullchinese.view.store.StoreFragment;
+import com.gammakite.fullchinese.view.text.TextsFragment;
 
 import me.majiajie.pagerbottomtabstrip.NavigationController;
 import me.majiajie.pagerbottomtabstrip.PageNavigationView;

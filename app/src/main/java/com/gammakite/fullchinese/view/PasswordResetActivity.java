@@ -1,4 +1,4 @@
-package com.example.stone.uidemo.view;
+package com.gammakite.fullchinese.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.stone.uidemo.R;
+import com.gammakite.fullchinese.R;
 
 /**
  * A login screen that offers login via email/password.

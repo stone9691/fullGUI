@@ -1,4 +1,4 @@
-package com.example.stone.uidemo.object;
+package com.gammakite.fullchinese.object;
 
 /**
  * Created by stone on 17-12-9.

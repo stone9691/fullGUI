@@ -1,4 +1,4 @@
-package com.example.stone.uidemo.application;
+package com.gammakite.fullchinese.application;
 
 import android.app.Application;
 

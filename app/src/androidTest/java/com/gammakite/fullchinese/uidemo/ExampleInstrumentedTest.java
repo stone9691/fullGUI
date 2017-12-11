@@ -1,4 +1,4 @@
-package com.example.stone.uidemo;
+package com.gammakite.fullchinese.uidemo;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.stone.uidemo.view.MainActivity">
+    tools:context="com.gammakite.fullchinese.uidemo.view.MainActivity">
 
     <FrameLayout
         android:id="@+id/activity_main_container"

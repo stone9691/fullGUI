@@ -1,4 +1,4 @@
-package com.example.stone.uidemo.view;
+package com.gammakite.fullchinese.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,56 +7,57 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.stone.uidemo.R;
+import com.gammakite.fullchinese.R;
 
 /**
  * A login screen that offers login via email/password.
  */
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class RegistrationActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button mSignIn;
-    private TextView mTextForget;
-    private TextView mTextCreate;
+    private Button mCreateAccount;
+    private EditText mUsername;
+    private EditText mEmail;
+    private EditText mPassword;
+    private EditText mRepeatPassword;
+    private TextView mSignIn;
 
     private long firstTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_registration);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.hide();
 
-        mSignIn = findViewById(R.id.activity_login_button_sign_in);
+        mCreateAccount = findViewById(R.id.activity_registration_create_account);
+        mCreateAccount.setOnClickListener(this);
+
+        mUsername = findViewById(R.id.activity_registration_username);
+        mEmail = findViewById(R.id.activity_registration_email);
+        mPassword = findViewById(R.id.activity_registration_password);
+        mRepeatPassword = findViewById(R.id.activity_registration_repeat_password);
+
+        mSignIn = findViewById(R.id.activity_registration_sign_in);
         mSignIn.setOnClickListener(this);
-
-        mTextForget = findViewById(R.id.activity_login_text_forget);
-        mTextForget.setOnClickListener(this);
-
-        mTextCreate = findViewById(R.id.activity_login_text_create);
-        mTextCreate.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
         Intent intent;
         switch (v.getId()) {
-            case R.id.activity_login_button_sign_in:
-                intent = new Intent(LoginActivity.this, MainActivity.class);
+            case R.id.activity_registration_create_account:
+                intent = new Intent(RegistrationActivity.this, MainActivity.class);
                 startActivity(intent);
                 this.finish();
                 break;
-            case R.id.activity_login_text_forget:
-                intent = new Intent(LoginActivity.this, PasswordResetActivity.class);
-                startActivity(intent);
-                this.finish();
-                break;
-            case R.id.activity_login_text_create:
-                intent = new Intent(LoginActivity.this, RegistrationActivity.class);
+            case R.id.activity_registration_sign_in:
+                intent = new Intent(RegistrationActivity.this, LoginActivity.class);
                 startActivity(intent);
                 this.finish();
                 break;
