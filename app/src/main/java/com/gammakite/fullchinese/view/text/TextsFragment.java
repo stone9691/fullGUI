@@ -26,6 +26,11 @@ public class TextsFragment extends Fragment {
     private ListView mListView;
     private ItemAdapter mAdapter;
     private List<Text> mTextList;
+    private List<Text> mDisplayTextList;
+
+    private final int SWITCH_TAB_DEVICE = 0;
+    private final int SWITCH_TAB_CLOUD = 1;
+    private int mCurrentTab = SWITCH_TAB_DEVICE;
 
     public TextsFragment() {
         // Required empty public constructor
@@ -47,18 +52,29 @@ public class TextsFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_texts, container, false);
 
-        mTextList = new ArrayList<Text>();
-        for (int i = 1; i <= 50; i++) {
-            if (i % 3 == 0) {
-                mTextList.add(new Text("让子弹飞(" + i + ")", "Movies", "12/5/17", true));
-            } else {
-                mTextList.add(new Text("让子弹飞(" + i + ")", "Movies", "12/5/17", false));
+        mTextList = new ArrayList<>();
+        mDisplayTextList = new ArrayList<>();
+        for (int i = 1; i <= 4; i++) {
+            mTextList.add(new Text("让子弹飞(" + i + ")", "Movies", "12/5/17", false));
+        }
+
+        for (int i = 5; i <= 30; i++) {
+            mTextList.add(new Text("让子弹飞(" + i + ")", "Movies", "12/5/17", true));
+        }
+
+        if (mCurrentTab == SWITCH_TAB_DEVICE) {
+            for (Text t : mTextList) {
+                if (!t.getIsCloud()) {
+                    mDisplayTextList.add(t);
+                }
             }
+        } else {
+            mDisplayTextList.addAll(mTextList);
         }
 
         mListView = (ListView) view.findViewById(R.id.fragment_texts_list_texts);
         mAdapter = new ItemAdapter(getActivity(),
-                R.layout.fragment_texts_list_text, mTextList);
+                R.layout.fragment_texts_list_text, mDisplayTextList);
         mListView.setAdapter(mAdapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -74,7 +90,23 @@ public class TextsFragment extends Fragment {
         mSwitchMultiButton.setText("Device", "Cloud").setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
             @Override
             public void onSwitch(int position, String tabText) {
-                Toast.makeText(getActivity(), tabText, Toast.LENGTH_SHORT).show();
+                if (mCurrentTab != position) {
+                    mCurrentTab = position;
+                    mAdapter.clear();
+                    mDisplayTextList.clear();
+
+                    if (mCurrentTab == SWITCH_TAB_DEVICE) {
+                        for (Text t : mTextList) {
+                            if (!t.getIsCloud()) {
+                                mDisplayTextList.add(t);
+                            }
+                        }
+                    } else {
+                        mDisplayTextList.addAll(mTextList);
+                    }
+
+                    mAdapter.notifyDataSetChanged();
+                }
             }
         });
 
