@@ -1,6 +1,7 @@
 package com.gammakite.fullchinese.view.text;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -15,6 +16,8 @@ import android.widget.Toast;
 
 import com.gammakite.fullchinese.R;
 import com.gammakite.fullchinese.object.Text;
+import com.gammakite.fullchinese.view.LoginActivity;
+import com.gammakite.fullchinese.view.PasswordResetActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,7 +84,8 @@ public class TextsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Text text = mAdapter.getItem(position);
                 if (text != null) {
-                    // TODO
+                    Intent intent = new Intent(getActivity(), TextViewActivity.class);
+                    startActivity(intent);
                 }
             }
         });

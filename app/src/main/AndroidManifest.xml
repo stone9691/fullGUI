@@ -8,17 +8,16 @@
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 
     <application
-        android:name="com.gammakite.fullchinese.application.MyApplication"
+        android:name=".application.MyApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.gammakite.fullchinese.view.MainActivity">
-        </activity>
+        <activity android:name=".view.MainActivity"></activity>
         <activity
-            android:name="com.gammakite.fullchinese.view.LoginActivity"
+            android:name=".view.LoginActivity"
             android:label="@string/title_activity_login">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,10 +25,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.gammakite.fullchinese.view.RegistrationActivity">
-        </activity>
-        <activity android:name="com.gammakite.fullchinese.view.PasswordResetActivity">
-        </activity>
+        <activity android:name=".view.RegistrationActivity"></activity>
+        <activity android:name=".view.PasswordResetActivity"></activity>
+        <activity android:name=".view.text.TextViewActivity"></activity>
     </application>
 
 </manifest>
