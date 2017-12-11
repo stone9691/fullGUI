@@ -30,4 +30,5 @@ dependencies {
 
     compile 'org.greenrobot:eventbus:3.1.1'
     compile 'me.majiajie:pager-bottom-tab-strip:2.2.5'
+    compile 'lib.kingja.switchbutton:switchbutton:1.1.3'
 }

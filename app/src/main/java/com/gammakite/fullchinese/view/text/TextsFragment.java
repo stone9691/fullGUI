@@ -11,12 +11,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gammakite.fullchinese.R;
 import com.gammakite.fullchinese.object.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import lib.kingja.switchbutton.SwitchMultiButton;
 
 public class TextsFragment extends Fragment {
 
@@ -64,6 +67,14 @@ public class TextsFragment extends Fragment {
                 if (text != null) {
                     // TODO
                 }
+            }
+        });
+
+        SwitchMultiButton mSwitchMultiButton = (SwitchMultiButton) view.findViewById(R.id.fragment_texts_switch);
+        mSwitchMultiButton.setText("Device", "Cloud").setOnSwitchListener(new SwitchMultiButton.OnSwitchListener() {
+            @Override
+            public void onSwitch(int position, String tabText) {
+                Toast.makeText(getActivity(), tabText, Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -82,22 +82,16 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:src="@drawable/ic_device" />
 
-        <Button
-            android:id="@+id/device"
-            android:layout_width="100dp"
-            android:layout_height="28dp"
-            android:background="@color/LightGrey"
-            android:text="Device"
-            android:textColor="@color/colorPrimary" />
-
-        <Button
-            android:id="@+id/cloud"
-            android:layout_width="100dp"
-            android:layout_height="28dp"
-            android:background="@color/colorPrimary"
-            android:text="Cloud"
-            android:textColor="@color/White" />
-
+        <lib.kingja.switchbutton.SwitchMultiButton
+            android:id="@+id/fragment_texts_switch"
+            android:layout_width="196dp"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            app:strokeRadius="5dp"
+            app:strokeWidth="1dp"
+            app:selectedTab="0"
+            app:selectedColor="@color/colorPrimary"
+            app:textSize="14sp" />
 
         <ImageView
             android:id="@+id/imageView5"
