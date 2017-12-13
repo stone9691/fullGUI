@@ -12,12 +12,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.gammakite.fullchinese.R;
+import com.gammakite.fullchinese.event.TextDownloadEvent;
 import com.gammakite.fullchinese.object.Text;
-import com.gammakite.fullchinese.view.LoginActivity;
-import com.gammakite.fullchinese.view.PasswordResetActivity;
+import com.wang.avi.AVLoadingIndicatorView;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,6 +53,18 @@ public class TextsFragment extends Fragment {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -58,11 +73,11 @@ public class TextsFragment extends Fragment {
         mTextList = new ArrayList<>();
         mDisplayTextList = new ArrayList<>();
         for (int i = 1; i <= 4; i++) {
-            mTextList.add(new Text("让子弹飞(" + i + ")", "Movies", "12/5/17", false));
+            mTextList.add(new Text(i, "让子弹飞(" + i + ")", "Movies", "12/5/17", false));
         }
 
         for (int i = 5; i <= 30; i++) {
-            mTextList.add(new Text("让子弹飞(" + i + ")", "Movies", "12/5/17", true));
+            mTextList.add(new Text(i, "让子弹飞(" + i + ")", "Movies", "12/5/17", true));
         }
 
         if (mCurrentTab == SWITCH_TAB_DEVICE) {
@@ -84,8 +99,12 @@ public class TextsFragment extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Text text = mAdapter.getItem(position);
                 if (text != null) {
-                    Intent intent = new Intent(getActivity(), TextViewActivity.class);
-                    startActivity(intent);
+                    if (text.getIsCloud()) {
+                        EventBus.getDefault().post(new TextDownloadEvent(text.getId()));
+                    } else {
+                        Intent intent = new Intent(getActivity(), TextViewActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
         });
@@ -117,6 +136,43 @@ public class TextsFragment extends Fragment {
         return view;
     }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(TextDownloadEvent event) {
+        if (!event.completed) {
+            // TODO start to download text
+            for (Text t : mTextList) {
+                if (t.getId() == event.id) {
+                    t.setIsDownloading(true);
+                    mAdapter.notifyDataSetChanged();
+                    final long id = t.getId();
+                    new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            try {
+                                Thread.sleep(2000);
+                                EventBus.getDefault().post(new TextDownloadEvent(id, true));
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }).start();
+                    break;
+                }
+            }
+        } else {
+            for (Text t : mTextList) {
+                if (t.getId() == event.id) {
+                    t.setIsCloud(false);
+                    t.setIsDownloading(false);
+                    mAdapter.notifyDataSetChanged();
+                    Intent intent = new Intent(getActivity(), TextViewActivity.class);
+                    startActivity(intent);
+                    break;
+                }
+            }
+        }
+    }
+
     public class ItemAdapter extends ArrayAdapter<Text> {
         private List<Text> objects;
 
@@ -139,28 +195,42 @@ public class TextsFragment extends Fragment {
 
             TextView tv;
             ImageView image;
+            AVLoadingIndicatorView avi;
             if (text != null) {
-                tv = (TextView) v.findViewById(R.id.fragment_texts_list_title);
+                tv = v.findViewById(R.id.fragment_texts_list_title);
                 if (tv != null) {
                     tv.setText(text.getTitle());
                 }
 
-                tv = (TextView) v.findViewById(R.id.fragment_texts_list_type);
+                tv = v.findViewById(R.id.fragment_texts_list_type);
                 if (tv != null) {
                     tv.setText(text.getType());
                 }
 
-                tv = (TextView) v.findViewById(R.id.fragment_texts_list_date);
+                tv = v.findViewById(R.id.fragment_texts_list_date);
                 if (tv != null) {
                     tv.setText(text.getDate());
                 }
 
-                image = (ImageView) v.findViewById(R.id.fragment_texts_list_download);
-                if (image != null) {
-                    if (text.getIsCloud()) {
-                        image.setImageResource(R.drawable.ic_download);
+                if (text.getIsDownloading()) {
+
+                }
+                image = v.findViewById(R.id.fragment_texts_list_download);
+                avi = v.findViewById(R.id.fragment_texts_list_downloading);
+                if (image != null && avi != null) {
+                    if (text.getIsDownloading()) {
+                        image.setVisibility(View.INVISIBLE);
+                        avi.setVisibility(View.VISIBLE);
+                        avi.show();
                     } else {
-                        image.setImageResource(R.drawable.ic_download_finish);
+                        image.setVisibility(View.VISIBLE);
+                        avi.setVisibility(View.INVISIBLE);
+                        avi.hide();
+                        if (text.getIsCloud()) {
+                            image.setImageResource(R.drawable.ic_download);
+                        } else {
+                            image.setImageResource(R.drawable.ic_download_finish);
+                        }
                     }
                 }
             }
