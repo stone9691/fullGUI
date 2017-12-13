@@ -1,11 +1,9 @@
 package com.gammakite.fullchinese.view;
 
 import android.content.Intent;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             //actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.Silver)));
 
             LayoutInflater mInflater = LayoutInflater.from(this);
-            View mCustomView = mInflater.inflate(R.layout.action_bar, null);
+            View mCustomView = mInflater.inflate(R.layout.main_action_bar, null);
             actionBar.setCustomView(mCustomView);
             actionBar.setDisplayShowCustomEnabled(true);
         }
