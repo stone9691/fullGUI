@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
-            actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.Silver)));
+            //actionBar.setBackgroundDrawable(new ColorDrawable(ContextCompat.getColor(this, R.color.Silver)));
 
             LayoutInflater mInflater = LayoutInflater.from(this);
             View mCustomView = mInflater.inflate(R.layout.action_bar, null);
