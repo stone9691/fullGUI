@@ -1,9 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.gammakite.fullchinese.view.text.TextViewActivity">
+    android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+    <View
+        android:id="@+id/activity_text_view_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/WhiteSmoke"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/activity_text_view_left"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@drawable/ic_left_arrow_primary_color"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/LightGray"/>
+
+        <ImageView
+            android:id="@+id/activity_text_view_down"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@drawable/ic_down_arrow_primary_color"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/LightGray"/>
+
+        <ImageView
+            android:id="@+id/activity_text_view_up"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@drawable/ic_up_arrow_primary_color"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/LightGray"/>
+
+        <ImageView
+            android:id="@+id/activity_text_view_right"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="36dp"
+            android:layout_gravity="center_horizontal|center_vertical"
+            android:src="@drawable/ic_right_arrow_primary_color"/>
+    </LinearLayout>
+</LinearLayout>
