@@ -3,6 +3,7 @@ package com.gammakite.fullchinese.view.text;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Selection;
 import android.text.method.ScrollingMovementMethod;
 import android.widget.TextView;
 
@@ -23,7 +24,7 @@ public class TextViewActivity extends AppCompatActivity {
             actionBar.hide();
         }
 
-        TextView tv = findViewById(R.id.activity_text_view_content);
+        SelectionTextView tv = findViewById(R.id.activity_text_view_content);
         if (tv != null) {
             tv.setText(text);
             tv.setMovementMethod(ScrollingMovementMethod.getInstance());
