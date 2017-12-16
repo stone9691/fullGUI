@@ -70,32 +70,8 @@
         android:layout_width="match_parent"
         android:layout_height="56dp"
         android:gravity="center"
+        android:orientation="horizontal"
         android:background="@color/White" >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="早"
-            android:textSize="28sp"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:layout_marginRight="4dp"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/Black"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="上"
-            android:textSize="28sp"
-            android:paddingLeft="4dp"
-            android:paddingRight="4dp"
-            android:paddingTop="4dp"
-            android:paddingBottom="4dp"
-            android:layout_marginRight="4dp"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/Black"/>
     </LinearLayout>
 
     <View

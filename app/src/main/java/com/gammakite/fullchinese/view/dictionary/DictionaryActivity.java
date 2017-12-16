@@ -1,16 +1,20 @@
 package com.gammakite.fullchinese.view.dictionary;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gammakite.fullchinese.R;
 import com.gammakite.fullchinese.object.Sentence;
@@ -49,18 +53,37 @@ public class DictionaryActivity extends AppCompatActivity implements View.OnClic
             view.setOnClickListener(this);
         }
 
+        final String word = "早上";
         mSentenceList = new ArrayList<>();
-        mSentenceList.add(new Sentence(0, "早上","他早上给花园浇水。", "He waters the garden in the morning."));
-        mSentenceList.add(new Sentence(1, "早上","大家早上好！", "Good morning everyone!"));
-        mSentenceList.add(new Sentence(2, "早上","我每天早上六点半起床。", "I get up at six thirty every morning."));
-        mSentenceList.add(new Sentence(3, "早上","那天早上，冰雹下得厉害。", "That morning, it hailed heavily."));
-        mSentenceList.add(new Sentence(4, "早上","今天早上吃什么了？", "What did you have this morning?"));
-        mSentenceList.add(new Sentence(5, "早上","那天早上很冷。", "It was very cold that morning."));
+        mSentenceList.add(new Sentence(0, word,"他早上给花园浇水。", "He waters the garden in the morning."));
+        mSentenceList.add(new Sentence(1, word,"大家早上好！", "Good morning everyone!"));
+        mSentenceList.add(new Sentence(2, word,"我每天早上六点半起床。", "I get up at six thirty every morning."));
+        mSentenceList.add(new Sentence(3, word,"那天早上，冰雹下得厉害。", "That morning, it hailed heavily."));
+        mSentenceList.add(new Sentence(4, word,"今天早上吃什么了？", "What did you have this morning?"));
+        mSentenceList.add(new Sentence(5, word,"那天早上很冷。", "It was very cold that morning."));
 
         mListView = findViewById(R.id.activity_dictionary_list_sentences);
         mAdapter = new ItemAdapter(this,
                 R.layout.activity_dictionary_list_setence, mSentenceList);
         mListView.setAdapter(mAdapter);
+
+        View layout = findViewById(R.id.activity_dictionary_seperated_word);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(0, 0, 16, 0);
+        for (int i = 0; i < word.length(); i++) {
+            TextView textView = new TextView(this);
+            textView.setText(word.substring(i, i + 1));
+            textView.setId(i);
+            textView.setLayoutParams(params);
+            textView.setTextColor(ContextCompat.getColor(this, R.color.Black));
+            textView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorPrimary));
+            textView.setOnClickListener(this);
+            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 28);
+            textView.setPadding(4, 4, 4, 4);
+
+            ((LinearLayout) layout).addView(textView);
+        }
     }
 
     @Override
@@ -74,6 +97,7 @@ public class DictionaryActivity extends AppCompatActivity implements View.OnClic
             case R.id.activity_dictionary_play:
                 break;
             default:
+                Toast.makeText(this, "under development :)", Toast.LENGTH_SHORT).show();
                 break;
         }
     }
