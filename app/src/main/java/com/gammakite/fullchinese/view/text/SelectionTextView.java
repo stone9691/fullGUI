@@ -57,7 +57,7 @@ public class SelectionTextView extends android.support.v7.widget.AppCompatTextVi
                 try {
                     // 0 = getScrollY()
                     line = layout.getLineForVertical(0 + (int) event.getY());
-                    startIndex = layout.getOffsetForHorizontal(line, (int) event.getX());
+                    endIndex = startIndex = layout.getOffsetForHorizontal(line, (int) event.getX());
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -99,7 +99,12 @@ public class SelectionTextView extends android.support.v7.widget.AppCompatTextVi
                 setText(spannableString);
                 break;
             case MotionEvent.ACTION_UP:
-                if (getSelectedText() != null) {
+                if (startIndex == endIndex) {
+                    spannableString.setSpan(backgroundColorSpan, startIndex,
+                            startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    spannableString.setSpan(foregroundColorSpan, startIndex,
+                            startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    setText(spannableString);
                 }
                 isOnScroll = false;
                 break;
@@ -122,11 +127,47 @@ public class SelectionTextView extends android.support.v7.widget.AppCompatTextVi
         }
     }
 
-    public CharSequence getSelectedText() {
-        if (startIndex == endIndex)
-            return null;
-        if (startIndex < endIndex)
-            return getText().subSequence(startIndex, endIndex);
-        return getText().subSequence(endIndex, startIndex);
+    public void moveLeft() {
+        if (startIndex <= endIndex) {
+            if (startIndex > 0) {
+                startIndex--;
+                spannableString.setSpan(backgroundColorSpan, startIndex,
+                        startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                spannableString.setSpan(foregroundColorSpan, startIndex,
+                        startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                setText(spannableString);
+            }
+        } else {
+            if (endIndex > 0) {
+                endIndex--;
+                spannableString.setSpan(backgroundColorSpan, endIndex,
+                        endIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                spannableString.setSpan(foregroundColorSpan, endIndex,
+                        endIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                setText(spannableString);
+            }
+        }
+    }
+
+    public void moveRight() {
+        if (startIndex <= endIndex) {
+            if (endIndex < getText().length()) {
+                endIndex++;
+                spannableString.setSpan(backgroundColorSpan, startIndex,
+                        endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                spannableString.setSpan(foregroundColorSpan, startIndex,
+                        endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                setText(spannableString);
+            }
+        } else {
+            if (startIndex < getText().length()) {
+                startIndex++;
+                spannableString.setSpan(backgroundColorSpan, endIndex,
+                        startIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                spannableString.setSpan(foregroundColorSpan, endIndex,
+                        startIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+                setText(spannableString);
+            }
+        }
     }
 }
