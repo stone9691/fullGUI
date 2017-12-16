@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="@dimen/activity_small_margin"
+    android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/activity_dictionary_list_sentences_chinese"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Black"
+            android:textSize="16sp"
+            android:text="中文" />
+
+        <TextView
+            android:id="@+id/activity_dictionary_list_sentences_english"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/DarkGray"
+            android:textSize="16sp"
+            android:text="English" />
+
+</LinearLayout>

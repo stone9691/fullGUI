@@ -106,7 +106,7 @@
     <RelativeLayout
         android:id="@+id/activity_dictionary_definition"
         android:layout_width="match_parent"
-        android:layout_height="96dp"
+        android:layout_height="80dp"
         android:background="@color/White">
         <TextView
             android:layout_width="wrap_content"
@@ -160,10 +160,12 @@
     <ListView
         android:id="@+id/activity_dictionary_list_sentences"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@color/WhiteSmoke"
-        android:dividerHeight="1dp"
-        android:listSelector="@null"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:dividerHeight="0dp"
+        android:divider="@null"
+        android:layout_marginLeft="@dimen/activity_small_margin"
+        android:layout_marginBottom="@dimen/activity_small_margin"
         android:scrollingCache="false" />
 
     <View
