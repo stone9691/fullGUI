@@ -20,11 +20,11 @@ public class SelectionTextView extends android.support.v7.widget.AppCompatTextVi
     private int startIndex = 0;
     private int line = 0;
     private int endIndex = 0;
-    private boolean isOnScroll = false;
     private SpannableString spannableString;
     private BackgroundColorSpan backgroundColorSpan;
     private ForegroundColorSpan foregroundColorSpan;
     private Layout layout;
+    private boolean isSkipScrolling = false;
 
     public SelectionTextView(Context context) {
         this(context, null);
@@ -46,80 +46,52 @@ public class SelectionTextView extends android.support.v7.widget.AppCompatTextVi
                                  int lengthBefore, int lengthAfter) {
         super.onTextChanged(text, start, lengthBefore, lengthAfter);
         spannableString = new SpannableString(getText());
+        String tmp = getText().toString();
+    }
+
+    @Override
+    public void scrollTo(int x, int y) {
+        if (isSkipScrolling) {
+            return;
+        } else {
+            super.scrollTo(x, y);
+        }
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        layout = getLayout();
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                removeSelection();
-                try {
-                    // 0 = getScrollY()
-                    line = layout.getLineForVertical(0 + (int) event.getY());
-                    endIndex = startIndex = layout.getOffsetForHorizontal(line, (int) event.getX());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                isOnScroll = true;
-                break;
-            case MotionEvent.ACTION_MOVE:
-                spannableString.removeSpan(backgroundColorSpan);
-                if (isOnScroll) {
-                    /*
-                    if (event.getY() > scrollView.getScrollY()
-                            + scrollView.getHeight()) {
-                        scrollView.smoothScrollTo(0, scrollView.getScrollY()
-                                + scrollSpeed); //  0 =scrollView.getScrollX()
-                    } else if (event.getY() - scrollView.getScrollY() < 0) {
-                        scrollView.smoothScrollTo(0, scrollView.getScrollY()
-                                - scrollSpeed); //  0 =scrollView.getScrollX()
-                    } else {
-                    }
-                    */
-                }
-                try {
-                    // 0 = getScrollY()
-                    line = layout.getLineForVertical(0 + (int) event.getY());
-                    endIndex = layout.getOffsetForHorizontal(line, (int) event.getX());
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                if (startIndex < endIndex) {
-                    spannableString.setSpan(backgroundColorSpan, startIndex,
-                            endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    spannableString.setSpan(foregroundColorSpan, startIndex,
-                            endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                } else {
-                    spannableString.setSpan(backgroundColorSpan, endIndex,
-                            startIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                    spannableString.setSpan(foregroundColorSpan, endIndex,
-                            startIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                }
-                setText(spannableString);
+                isSkipScrolling = false;
                 break;
             case MotionEvent.ACTION_UP:
-                if (startIndex == endIndex) {
+                int scrollY = getScrollY();
+                removeSelection();
+                layout = getLayout();
+                try {
+                    line = layout.getLineForVertical(scrollY + (int) event.getY());
+                    startIndex = layout.getOffsetForHorizontal(line, (int) event.getX());
                     spannableString.setSpan(backgroundColorSpan, startIndex,
                             startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     spannableString.setSpan(foregroundColorSpan, startIndex,
                             startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
                     setText(spannableString);
+                    int y = getScrollY();
+                    setScrollY(scrollY);
+                    isSkipScrolling = true;
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                isOnScroll = false;
-                break;
-            case MotionEvent.ACTION_CANCEL:
-                removeSelection();
                 break;
             default:
                 break;
         }
-        return true;
+
+        return super.onTouchEvent(event);
     }
 
     public void removeSelection() {
         startIndex = 0;
-        endIndex = 0;
         if (spannableString != null && backgroundColorSpan != null) {
             spannableString.removeSpan(backgroundColorSpan);
             spannableString.removeSpan(foregroundColorSpan);
@@ -128,46 +100,24 @@ public class SelectionTextView extends android.support.v7.widget.AppCompatTextVi
     }
 
     public void moveLeft() {
-        if (startIndex <= endIndex) {
-            if (startIndex > 0) {
-                startIndex--;
-                spannableString.setSpan(backgroundColorSpan, startIndex,
-                        startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                spannableString.setSpan(foregroundColorSpan, startIndex,
-                        startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                setText(spannableString);
-            }
-        } else {
-            if (endIndex > 0) {
-                endIndex--;
-                spannableString.setSpan(backgroundColorSpan, endIndex,
-                        endIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                spannableString.setSpan(foregroundColorSpan, endIndex,
-                        endIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                setText(spannableString);
-            }
+        if (startIndex > 0) {
+            startIndex--;
+            spannableString.setSpan(backgroundColorSpan, startIndex,
+                    startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(foregroundColorSpan, startIndex,
+                    startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            setText(spannableString);
         }
     }
 
     public void moveRight() {
-        if (startIndex <= endIndex) {
-            if (endIndex < getText().length()) {
-                endIndex++;
-                spannableString.setSpan(backgroundColorSpan, startIndex,
-                        endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                spannableString.setSpan(foregroundColorSpan, startIndex,
-                        endIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                setText(spannableString);
-            }
-        } else {
-            if (startIndex < getText().length()) {
-                startIndex++;
-                spannableString.setSpan(backgroundColorSpan, endIndex,
-                        startIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                spannableString.setSpan(foregroundColorSpan, endIndex,
-                        startIndex, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-                setText(spannableString);
-            }
+        if (startIndex + 1 < getText().length()) {
+            startIndex++;
+            spannableString.setSpan(backgroundColorSpan, startIndex,
+                    startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            spannableString.setSpan(foregroundColorSpan, startIndex,
+                    startIndex + 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+            setText(spannableString);
         }
     }
 }

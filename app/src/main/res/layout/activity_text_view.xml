@@ -40,7 +40,7 @@
             android:text="zao shang"
             android:textColor="@color/Black"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_below="@+id/activity_text_view_selected_word"
             android:textSize="16sp"/>
 
         <TextView
@@ -66,6 +66,7 @@
             android:layout_alignParentBottom="true"/>
 
     </RelativeLayout>
+
     <com.gammakite.fullchinese.view.text.SelectionTextView
         android:id="@+id/activity_text_view_content"
         android:layout_width="match_parent"
