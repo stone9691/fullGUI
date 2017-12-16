@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.gammakite.fullchinese.R;
 
@@ -45,6 +46,17 @@ public class TextViewActivity extends AppCompatActivity implements View.OnClickL
         imageView = findViewById(R.id.text_view_bar_icon);
         if (imageView != null) {
             imageView.setOnClickListener(this);
+        }
+
+        Bundle bundle = getIntent().getExtras();
+        if (bundle != null) {
+            String title = bundle.getString("title");
+            if (title != null && title.length() > 0) {
+                TextView textView = findViewById(R.id.text_view_bar_title);
+                if (textView != null) {
+                    textView.setText(title);
+                }
+            }
         }
     }
 

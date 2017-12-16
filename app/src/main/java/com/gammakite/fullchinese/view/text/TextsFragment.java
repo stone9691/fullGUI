@@ -29,13 +29,12 @@ import lib.kingja.switchbutton.SwitchMultiButton;
 
 public class TextsFragment extends Fragment {
 
+    private final int SWITCH_TAB_DEVICE = 0;
+    private final int SWITCH_TAB_CLOUD = 1;
     private ListView mListView;
     private ItemAdapter mAdapter;
     private List<Text> mTextList;
     private List<Text> mDisplayTextList;
-
-    private final int SWITCH_TAB_DEVICE = 0;
-    private final int SWITCH_TAB_CLOUD = 1;
     private int mCurrentTab = SWITCH_TAB_DEVICE;
 
     public TextsFragment() {
@@ -102,8 +101,7 @@ public class TextsFragment extends Fragment {
                     if (text.getIsCloud()) {
                         EventBus.getDefault().post(new TextDownloadEvent(text.getId()));
                     } else {
-                        Intent intent = new Intent(getActivity(), TextViewActivity.class);
-                        startActivity(intent);
+                        startTextViewActivity(text);
                     }
                 }
             }
@@ -165,12 +163,20 @@ public class TextsFragment extends Fragment {
                     t.setIsCloud(false);
                     t.setIsDownloading(false);
                     mAdapter.notifyDataSetChanged();
-                    Intent intent = new Intent(getActivity(), TextViewActivity.class);
-                    startActivity(intent);
+                    startTextViewActivity(t);
                     break;
                 }
             }
         }
+    }
+
+    private void startTextViewActivity(Text text) {
+        Intent intent = new Intent(getActivity(), TextViewActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putLong("id", text.getId());
+        bundle.putString("title", text.getTitle());
+        intent.putExtras(bundle);
+        startActivity(intent);
     }
 
     public class ItemAdapter extends ArrayAdapter<Text> {
@@ -234,7 +240,6 @@ public class TextsFragment extends Fragment {
                     }
                 }
             }
-
 
             return v;
         }
