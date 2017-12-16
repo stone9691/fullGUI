@@ -16,5 +16,6 @@
     </string>
 
     <string name="double_back_to_exit">Press again to exit</string>
+    <string name="please_select_a_word">Please select a word</string>
 
 </resources>

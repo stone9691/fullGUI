@@ -1,5 +1,6 @@
 package com.gammakite.fullchinese.view.text;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,8 +8,10 @@ import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gammakite.fullchinese.R;
+import com.gammakite.fullchinese.view.dictionary.DictionaryActivity;
 
 public class TextViewActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -48,6 +51,11 @@ public class TextViewActivity extends AppCompatActivity implements View.OnClickL
             imageView.setOnClickListener(this);
         }
 
+        View view = findViewById(R.id.activity_text_view_dictionary);
+        if (view != null) {
+            view.setOnClickListener(this);
+        }
+
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             String title = bundle.getString("title");
@@ -58,6 +66,22 @@ public class TextViewActivity extends AppCompatActivity implements View.OnClickL
                 }
             }
         }
+    }
+
+    private void startDictionaryActivity() {
+        TextView textView = findViewById(R.id.activity_text_view_selected_word);
+        if (textView != null) {
+            if (textView.getText().length() > 0) {
+                Intent intent = new Intent(this, DictionaryActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("word", textView.getText().toString());
+                intent.putExtras(bundle);
+                startActivity(intent);
+            } else {
+                Toast.makeText(this, getString(R.string.please_select_a_word), Toast.LENGTH_SHORT).show();
+            }
+        }
+
     }
 
     @Override
@@ -75,6 +99,9 @@ public class TextViewActivity extends AppCompatActivity implements View.OnClickL
                 break;
             case R.id.text_view_bar_icon:
                 finish();
+                break;
+            case R.id.activity_text_view_dictionary:
+                startDictionaryActivity();
                 break;
             default:
                 break;

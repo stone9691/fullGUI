@@ -28,6 +28,7 @@
         <activity android:name=".view.RegistrationActivity"></activity>
         <activity android:name=".view.PasswordResetActivity"></activity>
         <activity android:name=".view.text.TextViewActivity"></activity>
+        <activity android:name=".view.dictionary.DictionaryActivity"></activity>
     </application>
 
 </manifest>

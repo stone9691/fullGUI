@@ -54,7 +54,8 @@
         android:layout_marginTop="8dp"
         android:src="@drawable/ic_submenu_notebooks"
         app:layout_constraintStart_toEndOf="@+id/fragment_texts_image_books"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="48dp" />
 
     <TextView
         android:id="@+id/fragment_texts_text_notebooks"

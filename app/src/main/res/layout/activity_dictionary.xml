@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/dictionary_action_bar"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/colorPrimary">
+
+        <ImageView
+            android:id="@+id/activity_dictionary_star"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginLeft="@dimen/activity_small_margin"
+            android:layout_marginTop="@dimen/activity_small_margin"
+            android:src="@drawable/ic_star_black"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"/>
+
+        <TextView
+            android:id="@+id/activity_dictionary_selected_word"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="早上"
+            android:textColor="@color/Black"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentTop="true"
+            android:textSize="32sp"/>
+
+        <TextView
+            android:id="@+id/activity_dictionary_pinyin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="zao shang"
+            android:textColor="@color/Black"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/activity_dictionary_english"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="early morning"
+            android:textColor="@color/White"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="@dimen/activity_horizontal_margin"
+            android:textSize="16sp"/>
+
+        <ImageView
+            android:id="@+id/activity_dictionary_play"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginRight="@dimen/activity_small_margin"
+            android:layout_marginTop="@dimen/activity_small_margin"
+            android:src="@drawable/ic_dictionary_play"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/activity_dictionary_seperated_word"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:gravity="center"
+        android:background="@color/White" >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="早"
+            android:textSize="28sp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_marginRight="4dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/Black"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="上"
+            android:textSize="28sp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:layout_marginRight="4dp"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/Black"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/LightGray"/>
+
+    <RelativeLayout
+        android:id="@+id/activity_dictionary_definition"
+        android:layout_width="match_parent"
+        android:layout_height="96dp"
+        android:background="@color/White">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Definition"
+            android:textSize="16sp"
+            android:layout_marginTop="@dimen/activity_small_margin"
+            android:layout_marginLeft="@dimen/activity_small_margin"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/colorPrimary"/>
+
+        <TextView
+            android:id="@+id/activity_dictionary_definition_pinyin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="zao shang"
+            android:textSize="16sp"
+            android:layout_marginLeft="@dimen/activity_small_margin"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:textColor="@color/Black"/>
+
+        <TextView
+            android:id="@+id/activity_dictionary_definition_english"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="early morning"
+            android:textSize="16sp"
+            android:layout_marginBottom="@dimen/activity_small_margin"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:textColor="@color/Black"/>
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/LightGray"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sentences"
+        android:textSize="16sp"
+        android:layout_marginTop="@dimen/activity_small_margin"
+        android:layout_marginLeft="@dimen/activity_small_margin"
+        android:textColor="@color/colorPrimary"/>
+
+    <ListView
+        android:id="@+id/activity_dictionary_list_sentences"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:divider="@color/WhiteSmoke"
+        android:dividerHeight="1dp"
+        android:listSelector="@null"
+        android:scrollingCache="false" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/LightGray"/>
+
+</LinearLayout>
